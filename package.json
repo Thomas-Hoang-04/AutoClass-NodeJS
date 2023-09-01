@@ -1,0 +1,22 @@
+{
+  "name": "automating-class-registration",
+  "version": "1.0.0",
+  "description": "Automate my class registration process for every semester",
+  "main": "index.js",
+  "scripts": {
+    "start": "node test.mjs",
+    "pretest": "node test_env.mjs"
+  },
+  "author": "Hai Hoang Minh",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "delay": "^6.0.0",
+    "dotenv": "^16.3.1",
+    "puppeteer": "^21.1.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-recaptcha": "^3.6.8",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "tesseract.js": "^4.1.2"
+  }
+}
