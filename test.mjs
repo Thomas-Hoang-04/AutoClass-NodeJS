@@ -25,6 +25,20 @@ const register = async (page, code) => {
   }
 };
 
+const login = async (page, id, pass) => {
+  const usrName = await page.waitForSelector("#tbUserName");
+  if (usrName) {
+    await usrName.type(`${id}`, { delay: 100 });
+  }
+  await page.keyboard.press("Tab");
+  await delay(500);
+  const usrPass = await page.waitForSelector('input[type="password"]');
+  if (usrPass) {
+    await usrPass.type(`${pass}`, { delay: 100 });
+  }
+  await delay(500);
+};
+
 const test = async () => {
   const browser = await puppeteer.use(StealthPlugin).launch({
     args: ["--window-size=1024,1280"],
@@ -41,14 +55,14 @@ const test = async () => {
   });
   await page.setUserAgent(`${process.env.USER_AGENT}`);
   await page.setJavaScriptEnabled(true);
-  await delay(3000);
-  await page.reload();
   await delay(1500);
+  await page.reload();
+  await page.waitForNetworkIdle({ idleTime: 500 });
   const cImage = await page.waitForSelector("#ccCaptcha_IMG");
   let scrshot;
   if (cImage) {
     scrshot = await cImage.screenshot();
-    await delay(1000);
+    await delay(800);
   }
   const image = scrshot.toString("base64");
   axios
@@ -59,7 +73,7 @@ const test = async () => {
     })
     .then(async res => {
       const id = res.data.split("|")[1];
-      await delay(8000);
+      await delay(6400);
       axios
         .request({
           method: "GET",
@@ -86,21 +100,15 @@ const test = async () => {
             await ent.click();
           }
         })
-        .catch(err => console.log("Fail"));
+        .catch(err => {
+          if (err) console.log("Fail");
+        });
     })
-    .catch(err => console.log("Fail"));
-  await delay(1000);
-  const usrName = await page.waitForSelector("#tbUserName");
-  if (usrName) {
-    await usrName.type("20225492", { delay: 100 });
-  }
-  await page.keyboard.press("Tab");
-  await delay(500);
-  const usrPass = await page.waitForSelector('input[type="password"]');
-  if (usrPass) {
-    await usrPass.type("longhai12", { delay: 100 });
-  }
-  await delay(500);
+    .catch(err => {
+      if (err) console.log("Fail");
+    });
+  await delay(250);
+  await login(page, 20225187, "Ro5Cz3d4");
   await page.waitForNavigation({ waitUntil: ["networkidle0"] });
   await delay(500);
   if (page.url() !== `${process.env.MAIN_PATH}`) {
