@@ -49,6 +49,7 @@ const test = async () => {
   const page = await browser.newPage();
   await page.setViewport({ width: 1024, height: 1280 });
   await page.setBypassCSP(true);
+
   await page.goto(`${process.env.MAIN_PATH}`);
   await page.setExtraHTTPHeaders({
     "Accept-Language": "vi-VN",
@@ -56,8 +57,10 @@ const test = async () => {
   await page.setUserAgent(`${process.env.USER_AGENT}`);
   await page.setJavaScriptEnabled(true);
   await delay(1500);
+
   await page.reload();
   await page.waitForNetworkIdle({ idleTime: 500 });
+
   const cImage = await page.waitForSelector("#ccCaptcha_IMG");
   let scrshot;
   if (cImage) {
@@ -65,6 +68,7 @@ const test = async () => {
     await delay(800);
   }
   const image = scrshot.toString("base64");
+
   axios
     .post("http://2captcha.com/in.php", {
       key: `${process.env.API_KEY}`,
@@ -108,9 +112,11 @@ const test = async () => {
       if (err) console.log("Fail");
     });
   await delay(250);
+
   await login(page, 20225187, "Ro5Cz3d4");
   await page.waitForNavigation({ waitUntil: ["networkidle0"] });
   await delay(500);
+
   if (page.url() !== `${process.env.MAIN_PATH}`) {
     await page.reload();
     await delay(750);
