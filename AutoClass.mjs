@@ -71,7 +71,7 @@ const test = async () => {
     const image = scrshot.toString("base64");
 
     axios
-      .post("http://2captcha.com/in.php", {
+      .post(`${process.env.SEND_TARGET}`, {
         key: `${process.env.API_KEY}`,
         method: "base64",
         body: image,
@@ -82,7 +82,7 @@ const test = async () => {
         axios
           .request({
             method: "GET",
-            url: "http://2captcha.com/res.php",
+            url: `${process.env.RECEIVE_TARGET}`,
             params: {
               key: `${process.env.API_KEY}`,
               action: "get",
