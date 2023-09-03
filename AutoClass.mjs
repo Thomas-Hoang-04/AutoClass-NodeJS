@@ -112,16 +112,20 @@ const test = async () => {
         if (err) console.log("Fail");
       });
     await delay(250);
-
-    await login(page, 20225187, "Ro5Cz3d4");
+    // Add your account information here
+    const stuID = 12345678;
+    const stuPass = "123abc";
+    await login(page, stuID, stuPass);
     await page.waitForNavigation({ waitUntil: ["networkidle0"] });
     await delay(500);
 
     if (page.url() !== `${process.env.MAIN_PATH}`) {
       await page.reload();
       await delay(750);
-      await register(page, 733160);
-      await register(page, 733161);
+      const classID = []; // List of classes' ID
+      for (let i = 0; i < classID.length(); i++) {
+        await register(page, classID[i]);
+      }
       await delay(1000);
       const final_confirm = await page.waitForSelector(
         `#${process.env.BTN_ID_3}`
