@@ -39,7 +39,7 @@ const login = async (page, id, pass) => {
   await delay(500);
 };
 
-const test = async () => {
+(async () => {
   try {
     const browser = await puppeteer.use(StealthPlugin).launch({
       args: ["--window-size=1024,1280"],
@@ -142,6 +142,4 @@ const test = async () => {
     console.log("\n\n");
     console.log("Automation Error");
   }
-};
-
-test();
+})();
