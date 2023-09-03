@@ -10,13 +10,13 @@
   "author": "Hai Hoang Minh",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.4.15",
     "axios": "^1.5.0",
     "delay": "^6.0.0",
     "dotenv": "^16.3.1",
     "puppeteer": "^21.1.1",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-recaptcha": "^3.6.8",
-    "puppeteer-extra-plugin-stealth": "^2.11.2",
-    "tesseract.js": "^4.1.2"
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }
