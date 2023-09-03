@@ -1,7 +1,7 @@
 {
-  "name": "automating-class-registration",
+  "name": "autoclass",
   "version": "1.0.0",
-  "description": "Automate my class registration process for every semester",
+  "description": "Automate semester class registration process for HUST student",
   "main": "index.js",
   "scripts": {
     "start": "node AutoClass.mjs",
