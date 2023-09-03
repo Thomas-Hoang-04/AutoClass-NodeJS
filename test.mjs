@@ -77,7 +77,7 @@ const test = async () => {
     })
     .then(async res => {
       const id = res.data.split("|")[1];
-      await delay(6400);
+      await delay(6500);
       axios
         .request({
           method: "GET",
@@ -130,6 +130,8 @@ const test = async () => {
       await final_confirm.click();
       await delay(1000);
     }
+  } else {
+    console.log("Login Error");
   }
 };
 
