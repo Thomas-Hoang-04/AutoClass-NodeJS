@@ -4,7 +4,7 @@
   "description": "Automate my class registration process for every semester",
   "main": "index.js",
   "scripts": {
-    "start": "node test.mjs",
+    "start": "node AutoClass.mjs",
     "pretest": "node test_env.mjs"
   },
   "author": "Hai Hoang Minh",
