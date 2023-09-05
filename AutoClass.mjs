@@ -16,11 +16,6 @@ const register = async (page, code) => {
     if (first_confirm) {
       await first_confirm.click();
       await delay(250);
-      const send_data = await page.waitForSelector(`#${process.env.BTN_ID_2}`);
-      if (send_data) {
-        await send_data.click();
-        await delay(250);
-      }
     }
   }
 };
@@ -127,12 +122,17 @@ const login = async (page, id, pass) => {
         await register(page, classID[i]);
       }
       await delay(1000);
-      const final_confirm = await page.waitForSelector(
-        `#${process.env.BTN_ID_3}`
-      );
-      if (final_confirm) {
-        await final_confirm.click();
-        await delay(1000);
+      const send_data = await page.waitForSelector(`#${process.env.BTN_ID_2}`);
+      if (send_data) {
+        await send_data.click();
+        await delay(250);
+        const final_confirm = await page.waitForSelector(
+          `#${process.env.BTN_ID_3}`
+        );
+        if (final_confirm) {
+          await final_confirm.click();
+          await delay(1000);
+        }
       }
     } else {
       console.log("Login Error");
